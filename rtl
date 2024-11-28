@@ -1,0 +1,6 @@
+module bidirectional_buffer(a,b,en);
+inout a,b;
+input en;
+assign a=en?b:1'bz;
+assign b=~en?a:1'bz;
+endmodule
