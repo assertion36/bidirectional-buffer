@@ -1,0 +1,26 @@
+module bidirectional_buffer_tb();
+integer i;
+reg en;
+wire a,b;
+reg a_temp,b_temp;
+assign a=(en==1)?b_temp:1'bz;
+assign b=(en==1)?a_temp:1'bz;
+bidirectional_buffer DUT(a,b,en);
+initial
+begin
+        a_temp=1'b0;
+        b_temp=1'b0;
+        en=1'b0;
+end
+initial
+begin
+        for (i=0;i<8;i=i+1)
+begin
+{en,a_temp,b_temp}=i;
+
+#5;
+end
+end
+initial
+        #100 $finish;
+endmodule
